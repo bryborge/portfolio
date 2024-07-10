@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from 'react';
  *
  * @return {JSX.Element} The terminal component.
  */
-const Terminal = () => {
+const Terminal = (): JSX.Element => {
   // State
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<string[]>([]);
@@ -30,6 +30,14 @@ const Terminal = () => {
     { command: 'hire', description: 'Downloads resume' },
   ];
 
+  const daysOfCoding = () => {
+    const today: any                 = new Date();
+    const dateStartedCoding: any     = new Date("03/02/2015");
+    const millisecondsPerDay: number = 24 * 60 * 60 * 1000;
+
+    return Math.floor((today - dateStartedCoding) / (millisecondsPerDay));
+  }
+
   // Typing effect
   useEffect(() => {
     const systemInfo = [
@@ -37,8 +45,8 @@ const Terminal = () => {
       'System Information:',
       '-------------------',
       'OS: BryOS 1.0',
-      'Kernel: 5.4.0-42-bleeding-edge',
-      'Uptime: 3416 day, 5 hours',
+      'Kernel: 5.4.0-bleeding-edge',
+      `Uptime: ${daysOfCoding()} days`,
       'Packages: 42',
       'Shell: brysh 0.1',
       '-------------------',
@@ -102,8 +110,8 @@ const Terminal = () => {
   };
 
   return (
-    <div className="bg-black text-green-500 p-5 font-mono rounded-lg w-full max-w-lg mx-auto overflow-scroll">
-      <div className="min-h-48 mb-4">
+    <div className="bg-black text-green-500 p-5 mb-12 font-mono rounded-lg w-full mx-auto overflow-scroll">
+      <div className="min-h-[420px] mb-4">
         { output.map((line, index) => (
           <div key={index}>{line}</div>
         )) }
@@ -116,15 +124,13 @@ const Terminal = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="bg-transparent border-none text-green-500 outline-none flex-grow font-mono px-2"
-        />
+          className="bg-transparent border-none text-green-500 outline-none flex-grow font-mono px-2" />
       </div>
       <a
         ref={downloadLinkRef}
         href="https://drive.google.com/uc?export=download&id=1KyJ0m44D0yPw2UXUXa7qGerzz9OLZikQ"
         download
-        style={{ display: 'none' }}
-      >
+        style={{ display: 'none' }}>
         Download Resume
       </a>
     </div>
