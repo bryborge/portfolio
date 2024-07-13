@@ -36,10 +36,15 @@ const Terminal = (): JSX.Element => {
     { command: 'clear', description: 'Clears the terminal' },
     { command: 'help', description: 'Lists available commands' },
     { command: 'hire', description: "Download Bryan's resume" },
-    { command: 'projects', description: 'List top three projects' },
+    { command: 'projects', description: 'List top projects' },
     { command: 'uptime', description: 'Show how long Bryan has been coding' },
   ];
   const projectList = [
+    {
+      project: 'Portfolio (this app)',
+      description: '🗂️ My personal portfolio website.',
+      link: 'https://github.com/bryborge/portfolio'
+    },
     {
       project: 'Cosmos',
       description: '🪐 🔭 A monorepo where I define and manage infrastructure in my homelab and on various cloud provider platforms.',
@@ -49,12 +54,7 @@ const Terminal = (): JSX.Element => {
       project: 'Comicdex',
       description: '💭 A platform for managing comic book collections.',
       link: 'https://github.com/bryborge/comicdex'
-    },
-    {
-      project: 'gRPC Web Demo',
-      description: '📈 Demonstration of a web client communicating with a gRPC server over a proxy.',
-      link: 'https://github.com/bryborge/demo-grpc-web'
-    },
+    }
   ];
   const linuxList = ['ps', 'pwd', 'touch', 'mv', 'grep', 'sed', 'awk', 'tail', 'sudo', 'kill', 'killall', 'kill -9', 'top', 'htop', 'free', 'df', 'du', 'du -h', 'df -h', 'ls', 'ls -a', 'ls -l', 'ls -a -l', 'cat', 'cat README.md', 'cat LICENSE', 'cat package.json', 'cat package-lock.json', 'hostname', 'curl'];
   const systemInfo = [
@@ -124,7 +124,7 @@ const Terminal = (): JSX.Element => {
             downloadLinkRef.current.click();
           }
         } else if (input === 'projects') {
-          newOutput.push("Bryan's Top (3) Projects:");
+          newOutput.push("Bryan's Top Projects:");
           newOutput.push("-------------------------");
           projectList.forEach((cmd) => {
             newOutput.push(`\xa0`),
@@ -136,6 +136,8 @@ const Terminal = (): JSX.Element => {
           newOutput.push(`Bryan has been coding for ${daysOfCoding()} days! Please DO NOT reset him! 😜`);
         } else if (linuxList.includes(input)) {
           newOutput.push("What do you think this is ... linux? 🐧 Try 'help'")
+        } else if (input === 'whoami') {
+          newOutput.push(`Who is ... anyone, really...? 🤔🧘`);
         } else {
           newOutput.push(`brysh: command not found: ${input}`);
         }
