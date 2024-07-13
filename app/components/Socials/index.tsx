@@ -1,6 +1,4 @@
-import FacebookIcon from "../Icons/FacebookIcon";
 import GitHubIcon from "../Icons/GitHubIcon";
-import InstagramIcon from "../Icons/InstagramIcon";
 import LinkedInIcon from "../Icons/LinkedInIcon";
 import XIcon from "../Icons/XIcon";
 
@@ -25,16 +23,6 @@ const Socials = (): JSX.Element => {
       name: "X",
       href: "https://x.com/bryborge",
       icon: <XIcon />
-    },
-    {
-      name: "Instagram",
-      href: "https://instagram.com/bryborge",
-      icon: <InstagramIcon />
-    },
-    {
-      name: "Facebook",
-      href: "https://facebook.com/bryborge",
-      icon: <FacebookIcon />
     },
   ]
 
