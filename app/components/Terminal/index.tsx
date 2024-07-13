@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import * as constants from './constants';
 
 /**
  * Renders a terminal component with a greeting message and a command prompt.
@@ -16,77 +17,18 @@ const Terminal = (): JSX.Element => {
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
-  // Functions
-  const daysOfCoding = () => {
-    const today: any                 = new Date();
-    const dateStartedCoding: any     = new Date("03/02/2015");
-    const millisecondsPerDay: number = 24 * 60 * 60 * 1000;
-
-    return Math.floor((today - dateStartedCoding) / (millisecondsPerDay));
-  }
-  // Constants
-  const asciiArt = `
-    ░\xa0\xa0\xa0\xa0\xa0\xa0\xa0░░░\xa0\xa0\xa0\xa0\xa0\xa0\xa0░░░\xa0\xa0░░░░\xa0\xa0░░░\xa0\xa0\xa0\xa0\xa0\xa0░░░░\xa0\xa0\xa0\xa0\xa0\xa0░░
-    ▒\xa0\xa0▒▒▒▒\xa0\xa0▒▒\xa0\xa0▒▒▒▒\xa0\xa0▒▒▒\xa0\xa0▒▒\xa0\xa0▒▒▒\xa0\xa0▒▒▒▒\xa0\xa0▒▒\xa0\xa0▒▒▒▒▒▒▒
-    ▓\xa0\xa0\xa0\xa0\xa0\xa0\xa0▓▓▓\xa0\xa0\xa0\xa0\xa0\xa0\xa0▓▓▓▓▓\xa0\xa0\xa0\xa0▓▓▓▓\xa0\xa0▓▓▓▓\xa0\xa0▓▓▓\xa0\xa0\xa0\xa0\xa0\xa0▓▓
-    █\xa0\xa0████\xa0\xa0██\xa0\xa0███\xa0\xa0██████\xa0\xa0█████\xa0\xa0████\xa0\xa0████████\xa0\xa0█
-    █\xa0\xa0\xa0\xa0\xa0\xa0\xa0███\xa0\xa0████\xa0\xa0█████\xa0\xa0██████\xa0\xa0\xa0\xa0\xa0\xa0████\xa0\xa0\xa0\xa0\xa0\xa0██
-  `;
-  const availableCommands = [
-    { command: 'clear', description: 'Clears the terminal' },
-    { command: 'help', description: 'Lists available commands' },
-    { command: 'hire', description: "Download Bryan's resume" },
-    { command: 'projects', description: 'List top projects' },
-    { command: 'uptime', description: 'Show how long Bryan has been coding' },
-  ];
-  const projectList = [
-    {
-      project: 'Portfolio (this app)',
-      description: '🗂️ My personal portfolio website.',
-      link: 'https://github.com/bryborge/portfolio'
-    },
-    {
-      project: 'Cosmos',
-      description: '🪐 🔭 A monorepo where I define and manage infrastructure in my homelab and on various cloud provider platforms.',
-      link: 'https://github.com/bryborge/cosmos'
-    },
-    {
-      project: 'Comicdex',
-      description: '💭 A platform for managing comic book collections.',
-      link: 'https://github.com/bryborge/comicdex'
-    }
-  ];
-  const linuxList = ['ps', 'pwd', 'touch', 'mv', 'grep', 'sed', 'awk', 'tail', 'sudo', 'kill', 'killall', 'kill -9', 'top', 'htop', 'free', 'df', 'du', 'du -h', 'df -h', 'ls', 'ls -a', 'ls -l', 'ls -a -l', 'cat', 'cat README.md', 'cat LICENSE', 'cat package.json', 'cat package-lock.json', 'hostname', 'curl'];
-  const systemInfo = [
-    `\xa0`,
-    'System Information:',
-    '-------------------',
-    'OS: BryOS 1.0',
-    'Kernel: 5.4.0-bleeding-edge',
-    `Uptime: ${daysOfCoding()} days`,
-    'Packages: 42',
-    'Shell: brysh 0.1',
-    '-------------------',
-    `\xa0`,
-    'Type "help" for a list of available commands.',
-    `\xa0`,
-  ];
-  const initialMessageLines = asciiArt.trim().split('\n').concat(systemInfo);
 
   // React hooks
-
-  // Set the initial message
   useEffect(() => {
-    if (typingIndex < initialMessageLines.length) {
+    if (typingIndex < constants.initialMessageLines.length) {
       const timeout = setTimeout(() => {
-        setOutput((prevOutput) => [...prevOutput, initialMessageLines[typingIndex]]);
+        setOutput((prevOutput) => [...prevOutput, constants.initialMessageLines[typingIndex]]);
         setTypingIndex(typingIndex + 1);
       }, 150); // Adjust typing speed here
       return () => clearTimeout(timeout);
     }
-  }, [typingIndex, asciiArt, initialMessageLines]);
+  }, [typingIndex]);
 
-  // Focus the terminal input element
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -114,27 +56,27 @@ const Terminal = (): JSX.Element => {
           newOutput.push(`${input}`);
         } else if (input === 'help') {
           newOutput.push('Commands:');
-          availableCommands.forEach((cmd) =>
+          constants.availableCommands.forEach((cmd) =>
             newOutput.push(`- ${cmd.command}: ${cmd.description}`),
             newOutput.push(`\xa0`)
           );
         } else if (input === 'hire') {
-          newOutput.push('Resume downloaded!');
+          newOutput.push('Resume downloading! Feel free to continue looking around...');
           if (downloadLinkRef.current) {
             downloadLinkRef.current.click();
           }
         } else if (input === 'projects') {
           newOutput.push("Bryan's Top Projects:");
-          newOutput.push("-------------------------");
-          projectList.forEach((cmd) => {
+          newOutput.push("---------------------");
+          constants.projectList.forEach((cmd) => {
             newOutput.push(`\xa0`),
             newOutput.push(`* ${cmd.project}: (${cmd.link})`),
             newOutput.push(`\xa0`),
             newOutput.push(`${cmd.description}`)
           })
         } else if (input === 'uptime') {
-          newOutput.push(`Bryan has been coding for ${daysOfCoding()} days! Please DO NOT reset him! 😜`);
-        } else if (linuxList.includes(input)) {
+          newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him! 😜`);
+        } else if (constants.linuxList.includes(input)) {
           newOutput.push("What do you think this is ... linux? 🐧 Try 'help'")
         } else if (input === 'whoami') {
           newOutput.push(`Who is ... anyone, really...? 🤔🧘`);
