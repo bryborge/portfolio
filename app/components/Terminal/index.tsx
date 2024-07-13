@@ -37,6 +37,7 @@ const Terminal = (): JSX.Element => {
     { command: 'help', description: 'Lists available commands' },
     { command: 'hire', description: "Download Bryan's resume" },
     { command: 'projects', description: 'List top three projects' },
+    { command: 'uptime', description: 'Show how long Bryan has been coding' },
   ];
   const projectList = [
     {
@@ -131,6 +132,8 @@ const Terminal = (): JSX.Element => {
             newOutput.push(`\xa0`),
             newOutput.push(`${cmd.description}`)
           })
+        } else if (input === 'uptime') {
+          newOutput.push(`Bryan has been coding for ${daysOfCoding()} days! Please DO NOT reset him! 😜`);
         } else if (linuxList.includes(input)) {
           newOutput.push("What do you think this is ... linux? 🐧 Try 'help'")
         } else {
