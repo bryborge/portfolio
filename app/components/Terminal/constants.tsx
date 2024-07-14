@@ -18,11 +18,12 @@ const asciiArt = `
 `;
 
 const availableCommands = [
-  { command: 'clear', description: 'Clears the terminal' },
-  { command: 'help', description: 'Lists available commands' },
-  { command: 'hire', description: "Downloads Bryan's resume" },
-  { command: 'projects', description: "Lists Bryan's top projects" },
-  { command: 'uptime', description: 'Show how long Bryan has been coding' },
+  { command: 'clear', description: 'Clear the terminal screen' },
+  { command: 'help', description: 'List available commands' },
+  { command: 'hire', description: "Download Bryan's resume" },
+  { command: 'projects', description: "List Bryan's top projects" },
+  { command: 'uptime', description: 'Print how long Bryan has been coding' },
+  { command: 'exit', description: 'Exit current terminal session' },
 ];
 
 const projectList = [

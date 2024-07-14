@@ -92,7 +92,7 @@ const Terminal = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-black text-green-500 p-5 mb-12 font-mono rounded-lg w-full mx-auto overflow-scroll">
+    <div className="bg-black text-green-500 p-5 mb-12 font-mono rounded-lg w-full mx-auto overflow-scroll-auto">
       <div className="min-h-[420px] mb-4">
         { output.map((line, index) => (
           <div key={index}>{line}</div>
