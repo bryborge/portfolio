@@ -11,8 +11,7 @@
   "dependencies": {
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
