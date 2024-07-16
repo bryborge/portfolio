@@ -41,7 +41,7 @@ jobs:
           REPOSITORY_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}
           TAG=${{ github.sha }}
 
-          docker build -t $REPOSITORY_URI:$TAG .
+          docker build --target production -t $REPOSITORY_URI:$TAG .
           docker push $REPOSITORY_URI:$TAG
 
           echo "::set-output name=image::$REPOSITORY_URI:$TAG"
