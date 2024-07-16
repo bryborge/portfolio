@@ -25,9 +25,22 @@ TODO: Add test suite
 
 ## Deployment
 
-TODO: Right now, steps to deploy are highly manual. Once CI/CD is implemented
-([here](https://github.com/users/bryborge/projects/5/views/1?pane=issue&itemId=70851465)),
-Deployment will be straight-forward and automated.
+This project uses [Github Workflows](https://docs.github.com/en/actions/using-workflows) to manage the docker image
+build, tag, and push steps to [AWS ECR](https://aws.amazon.com/ecr/).  All of this is set up to work against the `main`
+branch.
+
+### CI/CD
+
+After Github Workflows is triggered and runs successfully, an image with the name/tag `<REPOSITORY_URI>:<TAG>` can be
+found in the image repository on ECR.
+
+To deploy this app where it is currently hosted ([AWS ECS](https://aws.amazon.com/ecs/)), you will need to update the
+image tag variable in IaC
+(found [here](https://github.com/bryborge/cosmos/blob/main/aws/environments/production/portfolio/02_ecs/terraform.tfvars#L3)).
+Once this value has been updated to point to the correct image you just pushed, just run the following commands from
+the [correct directory within the Cosmos project](https://github.com/bryborge/cosmos/blob/main/aws/environments/production/portfolio/02_ecs/).
+
+**TODO:** Remove the above manual step(s) so that the "CD" part of "CI/CD" is fully implemented.
 
 ### Manual Process
 
@@ -55,13 +68,7 @@ Deployment will be straight-forward and automated.
 
 5.  Once this completes, check the health of the application in the browser.
 
-
-
 ### Infrastructure
 
 The application can be deployed to AWS ECS, the infrastructure for which has been codified and can be found
 [here](https://github.com/bryborge/cosmos/tree/main/aws/modules/ecs-hosted-app).
-
-### CI/CD
-
-TODO: [Implement CI/CD](https://github.com/users/bryborge/projects/5/views/1?pane=issue&itemId=70851465)
