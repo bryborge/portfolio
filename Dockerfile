@@ -1,25 +1,34 @@
 # Stage 1: Install production dependencies and build
-FROM node:22.4-alpine AS builder
+FROM node:22.4-alpine AS base
 WORKDIR /app
-
 COPY package*.json ./
-RUN npm install --omit=dev
+EXPOSE 3000
 
+FROM base AS builder
+WORKDIR /app
 COPY . .
 RUN npm run build
   
-# Stage 2: Prepare final image
-FROM node:22.4-alpine
+FROM base as production
 WORKDIR /app
 
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
+ENV NODE_ENV=production
+RUN npm ci
+
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+USER nextjs
+
+
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
-COPY package.json ./
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/public ./public
 
-RUN chown -R node:node /app
-USER node
+CMD npm start
 
-EXPOSE 3000
-
-CMD ["npm", "run", "start"]
+# FROM base as dev
+# ENV NODE_ENV=development
+# RUN npm install
+# COPY . .
+# CMD npm run dev
