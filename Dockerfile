@@ -1,25 +1,23 @@
 # Stage 1: Install production dependencies and build
-FROM node:22.4-alpine AS builder
+FROM node:22.4-alpine AS base
 WORKDIR /app
-
 COPY package*.json ./
-RUN npm install --production
+EXPOSE 3000
 
+FROM base AS builder
+WORKDIR /app
+RUN npm ci
 COPY . .
 RUN npm run build
-  
-# Stage 2: Prepare final image
-FROM node:22.4-alpine
+
+FROM base as production
 WORKDIR /app
 
 COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
-COPY package.json ./
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/public ./public
 
-RUN chown -R node:node /app
-USER node
+ENV NODE_ENV=production
 
-EXPOSE 3000
-
-CMD ["npm", "run", "start"]
+CMD npm start
