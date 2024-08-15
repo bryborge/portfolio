@@ -1,4 +1,4 @@
-name: Deploy to AWS S3
+name: Deploy Portfolio to AWS S3
 
 on:
   push:
@@ -26,32 +26,6 @@ jobs:
 
       - name: Build site for Production
         run: npm run build
-
-      
-
-
-
-
-
-
-
-
-      # - name: Set up Ruby
-      #   uses: ruby/setup-ruby@v1
-  
-      # - name: Install dependencies
-      #   run: bundle install
-  
-      # - name: Setup Node
-      #   uses: actions/setup-node@v4
-  
-      # - run: npm install
-  
-      # - name: Build Site for Production
-      #   run: bundle exec jekyll build
-      #   env:
-      #     JEKYLL_ENV: production
-      #     NODE_ENV: production
       
       # - name: Deploy to AWS S3
       #   run: aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800 --size-only --storage-class REDUCED_REDUNDANCY
