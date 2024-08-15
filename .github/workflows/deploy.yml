@@ -20,15 +20,18 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build site for Production
         run: npm run build
       
       - name: Deploy to AWS S3
-        run: aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete --cache-control max-age=604800 --size-only --storage-class REDUCED_REDUNDANCY
+        run: aws s3 sync ./out s3://${{ secrets.AWS_S3_BUCKET_NAME }}
   
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
