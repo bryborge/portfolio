@@ -110,7 +110,7 @@ const Terminal = (): JSX.Element => {
       </div>
       <a
         ref={downloadLinkRef}
-        href="https://drive.google.com/uc?export=download&id=1KyJ0m44D0yPw2UXUXa7qGerzz9OLZikQ"
+        href="https://drive.google.com/uc?export=download&id=18ufroP5j3ALmdSiPGALKevLjIpwvo7kA"
         download
         style={{ display: 'none' }}>
         Download Resume
