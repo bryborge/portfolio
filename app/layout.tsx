@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "I lead teams, solve problems, and make things happen.",
   other: {
     subTitle: "Senior Software Engineer",
-    viewResumeLink: "https://drive.google.com/file/d/1KyJ0m44D0yPw2UXUXa7qGerzz9OLZikQ/view",
+    viewResumeLink: "https://drive.google.com/file/d/18ufroP5j3ALmdSiPGALKevLjIpwvo7kA/view",
     contactAddress: "Portland, OR 97213, US",
     contactEmail: "bryborge@gmail.com",
     contactPhone: "+1 (360) 713-4088",

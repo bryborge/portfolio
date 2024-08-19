@@ -14,19 +14,19 @@ const Timeline = (): JSX.Element => {
       roles: [
         {
           title: "Software Engineering Manager",
-          description: "Work cross-functionally with executives, product, architecture, and engineers to define and prioritize initiatives critical to maintaining SOC-2 compliance while developing new features to delight customers.",
+          description: "Spearheaded cross-functional initiatives with executives, product, architecture, and engineers to drive SOC-2 compliance and drive innovative customer experiences through new feature development.",
         },
         {
           title: "Senior Software Engineer, Lead",
-          description: "Build a team of 5 engineers at various skill levels to execute on migrating data from core applications and services down to a Databricks-powered data warehouse.",
+          description: "Assembled and led a high-performing team of 5 engineers with diverse skill sets to execute a complex data migration project from core applications to a Databricks-powered data warehouse.",
         },
         {
           title: "Software Engineer II",
-          description: "Dismantle silos and foster healthy communication between Product Management and Engineering along the Platform Monitoring business vertical.",
+          description: "Dismantled silos across the Platform Monitoring business vertical by establishing open communication channels and fostering a culture of collaboration that promoted shared responsibility and best practices.",
         },
         {
           title: "Software Engineer I",
-          description: "Write infrastructure code to provision and manage AWS cloud resources for a Highly Available, auto-scaling web scraper service orchestrated by Kubernetes across 3 environments (development, staging, production).",
+          description: "Designed and implemented scalable CloudFormation templates that provisioned and managed AWS cloud resources for a High Availability, auto-scaling web scraper service orchestrated by Kubernetes across development, staging, and production environments.",
         },
       ],
       technologies: ["Typescript", "React", "Node.js", "Ruby on Rails", "Docker", "Kubernetes", "AWS", "Python", "Databricks", "Terraform", "Puppet", "Ansible", "Grafana"],
@@ -39,11 +39,11 @@ const Timeline = (): JSX.Element => {
       roles: [
         {
           title: "Software Engineer",
-          description: "Overhaul the frontend design and accessibility features on the student quiz platform, built with a Ruby on Rails API backend and React SPA frontend. Build the MVP for project Waymaker — a personalized learning tool aimed to deliver personalized study plans, pre-tests, self-checks, and coaching to students.",
+          description: "Overhauled the frontend design and accessibility features on the student quiz platform - built with a Ruby on Rails API backend and React SPA frontend.",
         },
         {
           title: "Jr. Software Engineer",
-          description: "Lead the collaboration effort with the Open-source Pressbooks community maintainers, meeting regularly to discuss the project's trajectory, submitting feature code, and bug fixes. Mentor and help over 15 code-school graduate interns seeking software development industry-experience.",
+          description: "Collaborated as a key member of a 4-person team to drive the development of Waymaker, a personalized learning tool that delivered MVP success through innovative features like study plans, pre-tests, self-checks, and individualized coaching for students.",
         },
       ],
       technologies: ["React", "Ruby on Rails", "PHP", "Wordpress", "Node.js"],
