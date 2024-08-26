@@ -10,13 +10,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Bryan Borgeson",
   description: "Driving Technical Excellence through collaborative problem-solving and authentic leadership.",
-  other: {
-    // TODO: Add logic to construct separate view and download url links so that I can define these are variables in one place
-    viewResumeLink: "https://drive.google.com/file/d/18ufroP5j3ALmdSiPGALKevLjIpwvo7kA/view",
-    contactAddress: "Portland, OR 97213, US",
-    contactEmail: "bryborge@gmail.com",
-    contactPhone: "+1 (360) 713-4088",
-  }
 };
 
 /**

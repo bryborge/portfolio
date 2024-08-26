@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
-import { metadata } from "../../layout";
+// import { metadata } from "../../layout";
 import portrait from "./bryan_portrait_web_blob.png";
 
 /**
@@ -21,7 +21,7 @@ const Header = (): JSX.Element => {
       <div className="content-center text-center sm:text-left">
         <Link href="/">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl whitespace-normal lg:whitespace-nowrap font-bold tracking-tight text-slate-800">
-            { metadata.title?.toString() }
+            Bryan Borgeson
           </h1>
         </Link>
         <section className="mt-3 h-12 overflow-hidden">
@@ -42,7 +42,7 @@ const Header = (): JSX.Element => {
           </div>
         </section>
         <p className="mt-4 md:max-w-md lg:max-w-lg text-md sm:text-lg md:text-xl font-semibold text-slate-600">
-          { metadata.description?.toString() }
+          Driving Technical Excellence through collaborative problem-solving and authentic leadership.
         </p>
 
         {/* TODO: Replace socials w/ "Let's Connect" and "View Work" CTA buttons */}
