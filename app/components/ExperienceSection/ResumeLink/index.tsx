@@ -1,5 +1,3 @@
-// import { metadata } from "@/app/layout";
-
 /**
  * Renders a link to view the full résumé.
  *

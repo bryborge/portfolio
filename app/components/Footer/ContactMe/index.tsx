@@ -1,7 +1,6 @@
 import HouseIcon from "../../Icons/HouseIcon";
 import MailIcon from "../../Icons/MailIcon";
 import PhoneIcon from "../../Icons/PhoneIcon";
-// import { metadata } from "@/app/layout";
 
 /**
  * Renders the ContactMe component with contact information.
