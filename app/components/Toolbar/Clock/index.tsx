@@ -17,7 +17,7 @@ const Clock = (): JSX.Element => {
   //       >  Text content does not match server-rendered HTML.
   // Further Reading: https://nextjs.org/docs/messages/react-hydration-error
   return (
-    <div className="mr-8 text-lg" suppressHydrationWarning>
+    <div className="mr-8 w-16 text-lg" suppressHydrationWarning>
       { currentTime.getHours()}:{currentTime.getMinutes().toString().padStart(2, '0')}:{currentTime.getSeconds().toString().padStart(2, '0') }
     </div>
   );

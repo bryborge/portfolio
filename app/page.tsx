@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
 
 const PageContent = (): JSX.Element => {
   return (
-    <>
+    <div className="-mt-16">
       <div className="px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
         <Hero />
       </div>
@@ -47,6 +47,6 @@ const PageContent = (): JSX.Element => {
           <Footer />
         </div>
       </div>
-    </>
+    </div>
   );
 }
