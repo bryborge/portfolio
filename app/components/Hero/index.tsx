@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
 import { metadata } from "../../layout";
-import Socials from "../Socials";
 import portrait from "./bryan_portrait_web_blob.png";
 
 /**
@@ -42,14 +41,12 @@ const Header = (): JSX.Element => {
             </h2>
           </div>
         </section>
-        <p className="mt-4 md:max-w-md lg:max-w-lg text-md sm:text-lg md:text-xl font-semibold text-slate-800">
+        <p className="mt-4 md:max-w-md lg:max-w-lg text-md sm:text-lg md:text-xl font-semibold text-slate-600">
           { metadata.description?.toString() }
         </p>
-        <div className="flex justify-center sm:justify-normal mt-8 flex flex-row">
-          {/* TODO: Replace socials w/ "Let's Connect" and "View Work" CTA buttons */}
-          {/* <button className="rounded-full bg-indigo-300 px-8 py-4 font-bold leading-5 text-indigo-950 hover:bg-indigo-400">Let&#39;s Connect</button> */}
-          <Socials />
-        </div>
+
+        {/* TODO: Replace socials w/ "Let's Connect" and "View Work" CTA buttons */}
+        {/* <button className="rounded-full bg-indigo-300 px-8 py-4 font-bold leading-5 text-indigo-950 hover:bg-indigo-400">Let&#39;s Connect</button> */}
       </div>
     </section>
   );
