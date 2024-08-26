@@ -21,27 +21,9 @@ const availableCommands = [
   { command: 'clear', description: 'Clear the terminal screen' },
   { command: 'help', description: 'List available commands' },
   { command: 'hire', description: "Download Bryan's resume" },
-  { command: 'projects', description: "List Bryan's top projects" },
+  { command: 'projects', description: "List Bryan's code project repositories" },
   { command: 'uptime', description: 'Print how long Bryan has been coding' },
   { command: 'exit', description: 'Exit current terminal session' },
-];
-
-const projectList = [
-  {
-    project: 'Portfolio (this app)',
-    description: '🗂️ My personal portfolio website.',
-    link: 'https://github.com/bryborge/portfolio'
-  },
-  {
-    project: 'Cosmos',
-    description: '🪐 🔭 A monorepo where I define and manage infrastructure in my homelab and on various cloud provider platforms.',
-    link: 'https://github.com/bryborge/cosmos'
-  },
-  {
-    project: 'Comicdex',
-    description: '💭 A platform for managing comic book collections.',
-    link: 'https://github.com/bryborge/comicdex'
-  }
 ];
 
 const linuxList = ['ps', 'pwd', 'touch', 'mv', 'grep', 'sed', 'awk', 'tail', 'sudo', 'kill', 'killall', 'kill -9', 'top', 'htop', 'free', 'df', 'du', 'du -h', 'df -h', 'ls', 'ls -a', 'ls -l', 'ls -a -l', 'cat', 'cat README.md', 'cat LICENSE', 'cat package.json', 'cat package-lock.json', 'hostname', 'curl'];
@@ -63,4 +45,4 @@ const systemInfo = [
 
 const initialMessageLines = asciiArt.trim().split('\n').concat(systemInfo);
 
-export { availableCommands, projectList, linuxList, initialMessageLines, daysOfCoding };
+export { availableCommands, linuxList, initialMessageLines, daysOfCoding };

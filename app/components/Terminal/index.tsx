@@ -24,7 +24,7 @@ const Terminal = (): JSX.Element => {
       const timeout = setTimeout(() => {
         setOutput((prevOutput) => [...prevOutput, constants.initialMessageLines[typingIndex]]);
         setTypingIndex(typingIndex + 1);
-      }, 150); // Adjust typing speed here
+      }, 25); // Adjust typing speed here
       return () => clearTimeout(timeout);
     }
   }, [typingIndex]);
@@ -68,14 +68,10 @@ const Terminal = (): JSX.Element => {
         } else if (input === 'projects') {
           newOutput.push("Bryan's Top Projects:");
           newOutput.push("---------------------");
-          constants.projectList.forEach((cmd) => {
-            newOutput.push(`\xa0`),
-            newOutput.push(`* ${cmd.project}: (${cmd.link})`),
-            newOutput.push(`\xa0`),
-            newOutput.push(`${cmd.description}`)
-          })
+          newOutput.push("Github: https://github.com/bryborge?tab=repositories");
+          newOutput.push("Gitlab: https://gitlab.com/users/bryborge/projects");
         } else if (input === 'uptime') {
-          newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him! 😜`);
+          newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him!`);
         } else if (constants.linuxList.includes(input)) {
           newOutput.push("What do you think this is ... linux? 🐧 Try 'help'")
         } else if (input === 'whoami') {
