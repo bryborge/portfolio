@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from 'next/image';
-// import { metadata } from "../../layout";
 import portrait from "./bryan_portrait_web_blob.png";
 
 /**
@@ -25,7 +24,7 @@ const Header = (): JSX.Element => {
           </h1>
         </Link>
         <section className="mt-3 h-12 overflow-hidden">
-          <div className="first" style={{ "animation": "text-animation 12s infinite" }}>
+          <div className="first" style={{ "animation": "text-animation 10s infinite" }}>
             <h2 className="mt-2 text-3xl whitespace-nowrap font-medium tracking-tight text-indigo-600">
               Engineering Manager
             </h2>

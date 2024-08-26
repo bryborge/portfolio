@@ -69,7 +69,7 @@ const Terminal = (): JSX.Element => {
           newOutput.push("Bryan's Top Projects:");
           newOutput.push("---------------------");
           newOutput.push("Github: https://github.com/bryborge?tab=repositories");
-          newOutput.push("Gitlab: https://gitlab.com/users/bryborge/projects");
+          newOutput.push("Gitlab: https://github.com/bryborge?tab=repositories");
         } else if (input === 'uptime') {
           newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him!`);
         } else if (constants.linuxList.includes(input)) {
@@ -87,6 +87,7 @@ const Terminal = (): JSX.Element => {
     }
   };
 
+  // TODO: Variablize resume link url
   return (
     <div className="bg-black text-green-500 p-5 font-mono w-full min-h-screen mx-auto">
       <div className=" mb-4 overflow-scroll">

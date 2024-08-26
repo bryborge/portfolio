@@ -4,6 +4,7 @@
  * @return {JSX.Element} The link element to view the résumé.
  */
 const ResumeLink = (): JSX.Element => {
+  // TODO: Variablize resume link url
   return (
     <a
       href="https://drive.google.com/file/d/18ufroP5j3ALmdSiPGALKevLjIpwvo7kA/view"
