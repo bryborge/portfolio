@@ -32,7 +32,7 @@ export default function Home(): JSX.Element {
 const PageContent = (): JSX.Element => {
   return (
     <div className="-mt-16">
-      <div className="px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+      <div className="px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0 xl:px-36 max-w-screen-2xl mx-auto">
         <Hero />
       </div>
       <div className="bg-gradient-to-r from-slate-950 to-slate-800 text-slate-400 antialiased">

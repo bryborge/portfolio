@@ -3,11 +3,11 @@ import Image from 'next/image';
 import portrait from "./bryan_portrait_web_blob.png";
 
 /**
- * Renders the header component with links to social media profiles.
+ * Renders the hero component with links to social media profiles.
  *
- * @return {JSX.Element} The header component.
+ * @return {JSX.Element} The hero component.
  */
-const Header = (): JSX.Element => {
+const Hero = (): JSX.Element => {
   return (
     <section className="hero flex flex-col sm:flex-row-reverse">
       <div className="mx-8 mb-8 lg:mb-20 max-w-full">
@@ -19,7 +19,7 @@ const Header = (): JSX.Element => {
       <div className="grow"></div>
       <div className="content-center text-center sm:text-left">
         <Link href="/">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl whitespace-normal lg:whitespace-nowrap font-bold tracking-tight text-slate-800">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl whitespace-normal lg:whitespace-nowrap font-bold tracking-tight text-slate-800">
             Bryan Borgeson
           </h1>
         </Link>
@@ -51,4 +51,4 @@ const Header = (): JSX.Element => {
   );
 }
 
-export default Header;
+export default Hero;
