@@ -9,7 +9,7 @@ import Timeline from "./Timeline";
 const ExperienceSection = (): JSX.Element => {
   return (
     <>
-      <h3 className="font-bold leading-snug text-slate-200 mb-4 uppercase">
+      <h3 className="text-xl md:text-2xl font-bold leading-snug text-slate-200 mb-4 uppercase">
         Professional Experience
       </h3>
       <p className="mb-8">

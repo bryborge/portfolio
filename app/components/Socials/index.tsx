@@ -28,7 +28,7 @@ const Socials = (): JSX.Element => {
 
   return (
     <ul
-      className="ml-1 flex items-center"
+      className="flex items-center"
       aria-label="Social links">
         { socialLinks.map(({ name, href, icon }) => (
           <li
@@ -37,7 +37,7 @@ const Socials = (): JSX.Element => {
             <a
               href={href}
               target="_blank">
-              { icon }
+                { icon }
             </a>
           </li>
         )) }

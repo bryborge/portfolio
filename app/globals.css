@@ -5,12 +5,12 @@
 @keyframes text-animation {
   0% {margin-top: 0;}
   10% {margin-top: 0;}
-  20% {margin-top: -2.825rem;}
-  30% {margin-top: -2.825rem;}
-  40% {margin-top: -5.65rem;}
-  60% {margin-top: -5.65rem;}
-  70% {margin-top: -2.825rem;}
-  80% {margin-top: -2.825rem;}
+  20% {margin-top: -2.875rem;}
+  30% {margin-top: -2.875rem;}
+  40% {margin-top: -5.75rem;}
+  60% {margin-top: -5.75rem;}
+  70% {margin-top: -2.875rem;}
+  80% {margin-top: -2.875rem;}
   90% {margin-top: 0;}
   100% {margin-top: 0;}
 }

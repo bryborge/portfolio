@@ -51,7 +51,7 @@ const Timeline = (): JSX.Element => {
   ]
 
   return (
-    <ol>
+    <ol className="pb-0 md:pb-8">
       {/* Experience */}
       { experience.map((experience) => (
         <li
