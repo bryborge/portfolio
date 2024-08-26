@@ -15,13 +15,13 @@ import Toolbar from "./components/Toolbar";
 export default function Home(): JSX.Element {
   const [isTerminalDisplayed, setIsTerminalDisplayed] = useState<boolean>(false);
 
-  const handleToggle = () => {
+  const handleTerminalToggle = () => {
     setIsTerminalDisplayed((prev) => !prev);
   };
 
   return (
     <>
-      <Toolbar onTerminalAppClick={handleToggle} />
+      <Toolbar onTerminalAppClick={handleTerminalToggle} />
       <main className="mx-auto min-h-screen font-sans">
         {isTerminalDisplayed ? <Terminal /> : <PageContent />}
       </main>
