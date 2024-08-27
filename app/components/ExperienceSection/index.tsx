@@ -12,11 +12,6 @@ const ExperienceSection = (): JSX.Element => {
       <h3 className="text-xl md:text-2xl font-bold leading-snug text-slate-200 mb-4 uppercase">
         Professional Experience
       </h3>
-      <p className="mb-8">
-        Whether it&#39;s crafting elegant code, architecting scalable components, or monitoring mission-critical
-        systems, software engineering allows me to bring ideas to life in a way that feels both challenging and deeply
-        rewarding.
-      </p>
 
       <Timeline />
 
