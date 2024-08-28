@@ -9,7 +9,11 @@ import * as constants from './constants';
  *
  * @return {JSX.Element} The terminal component.
  */
-const Terminal = (): JSX.Element => {
+interface ToggleButtonProps {
+  onExitCommand: () => void;
+}
+
+const Terminal: React.FC<ToggleButtonProps> = ({ onExitCommand }) => {
   // State
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<string[]>([]);
@@ -47,8 +51,7 @@ const Terminal = (): JSX.Element => {
       if (input === 'clear') {
         setOutput([]); // Clear the output
       } else if (input === 'exit') {
-        setOutput([]); // Clear the output
-        setTypingIndex(0); // Reset typing index
+        onExitCommand();
       } else {
         const newOutput = [...output, `$ ${input}`];
 
@@ -90,13 +93,13 @@ const Terminal = (): JSX.Element => {
   // TODO: Variablize resume link url
   return (
     <div className="bg-black text-green-500 p-5 font-mono w-full min-h-screen mx-auto">
-      <div className=" mb-4 overflow-scroll">
+      <div className=" mb-4 overflow-scroll whitespace-nowrap">
         { output.map((line, index) => (
           <div key={index}>{line}</div>
         )) }
       </div>
       <div className="flex items-center">
-        <span>$ </span>
+        <span>root@root:~$ </span>
         <input
           type="text"
           ref={inputRef}

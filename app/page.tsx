@@ -23,7 +23,7 @@ export default function Home(): JSX.Element {
     <>
       <Toolbar onTerminalAppClick={handleTerminalToggle} />
       <main className="mx-auto min-h-screen font-sans">
-        {isTerminalDisplayed ? <Terminal /> : <PageContent />}
+        {isTerminalDisplayed ? <Terminal onExitCommand={handleTerminalToggle} /> : <PageContent />}
       </main>
     </>
   );
