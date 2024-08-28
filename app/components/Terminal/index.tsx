@@ -22,6 +22,8 @@ const Terminal: React.FC<ToggleButtonProps> = ({ onExitCommand }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
 
+  const PROMPT = 'root@root:~$';
+
   // React hooks
   useEffect(() => {
     if (typingIndex < constants.initialMessageLines.length) {
@@ -48,20 +50,24 @@ const Terminal: React.FC<ToggleButtonProps> = ({ onExitCommand }) => {
    */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      const linuxCommandInputted = constants.linuxList.findIndex((i) => input.includes(i));
+
       if (input === 'clear') {
         setOutput([]); // Clear the output
       } else if (input === 'exit') {
         onExitCommand();
       } else {
-        const newOutput = [...output, `$ ${input}`];
+        const newOutput = [...output, `${PROMPT} ${input}`];
 
         if (input === '' || input.trim().length === 0) {
           newOutput.push(`${input}`);
         } else if (input === 'help') {
-          newOutput.push('Commands:');
+          newOutput.push('------------------');
+          newOutput.push('AVAILABLE COMMANDS');
+          newOutput.push('------------------');
+          newOutput.push("\xa0");
           constants.availableCommands.forEach((cmd) =>
-            newOutput.push(`- ${cmd.command}: ${cmd.description}`),
-            newOutput.push(`\xa0`)
+            newOutput.push(`* ${cmd.command}: ${cmd.description}`),
           );
         } else if (input === 'hire') {
           newOutput.push('Resume downloading! Feel free to continue looking around...');
@@ -69,16 +75,21 @@ const Terminal: React.FC<ToggleButtonProps> = ({ onExitCommand }) => {
             downloadLinkRef.current.click();
           }
         } else if (input === 'projects') {
-          newOutput.push("Bryan's Top Projects:");
-          newOutput.push("---------------------");
-          newOutput.push("Github: https://github.com/bryborge?tab=repositories");
-          newOutput.push("Gitlab: https://github.com/bryborge?tab=repositories");
+          newOutput.push("----------------------------");
+          newOutput.push("Bryan's Project Repositories");
+          newOutput.push("----------------------------");
+          newOutput.push("\xa0");
+          newOutput.push("* Github: https://github.com/bryborge?tab=repositories");
+          newOutput.push("* Gitlab: https://gitlab.com/users/bryborge/projects");
         } else if (input === 'uptime') {
           newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him!`);
-        } else if (constants.linuxList.includes(input)) {
-          newOutput.push("What do you think this is ... linux? 🐧 Try 'help'")
-        } else if (input === 'whoami') {
-          newOutput.push(`Who is ... anyone, really...? 🤔🧘`);
+        } else if (linuxCommandInputted != -1) {
+          newOutput.push("What do you think this is, your personal playground? :P")
+        } else if (input.match('whoami') || input.match('whois')) {
+          newOutput.push(`Cogito, ergo sum.`);
+          newOutput.push(`According to Rene Descartes, this is the first principle from which one might begin to answer that question.`);
+        } else if (input.match('rm')) {
+          newOutput.push(`That is truly appalling behavior and you should be ashamed of yourself.`);
         } else {
           newOutput.push(`brysh: command not found: ${input}`);
         }
@@ -99,7 +110,7 @@ const Terminal: React.FC<ToggleButtonProps> = ({ onExitCommand }) => {
         )) }
       </div>
       <div className="flex items-center">
-        <span>root@root:~$ </span>
+        <span>{`${PROMPT} `}</span>
         <input
           type="text"
           ref={inputRef}
