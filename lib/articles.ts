@@ -8,6 +8,7 @@ type articleItem = {
   id: string;
   title: string;
   date: string;
+  category?: string;
   description: string;
 };
 
@@ -27,6 +28,7 @@ export const getArticleItems = (): articleItem[] => {
       id,
       title: matterResult.data.title,
       date: matterResult.data.date,
+      category: matterResult.data.category,
       description: matterResult.data.description
     };
   });
@@ -39,6 +41,18 @@ export const getArticleItems = (): articleItem[] => {
     }
   });
 };
+
+export const getArticleCategories = (): string[] => {
+  const articleItems = getArticleItems();
+  const categories = new Set<string>();
+  articleItems.forEach((article) => {
+    if (article.category) {
+      categories.add(article.category);
+    }
+  });
+
+  return Array.from(categories);
+}
 
 // TODO: add date filtering
 // TODO: add category filtering
