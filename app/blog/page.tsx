@@ -1,4 +1,9 @@
+import { getArticleItems } from "@/lib/articles";
+import Link from "next/link";
+
 const Blog = () => {
+  const articles = getArticleItems();
+
   return (
     <main className="mx-auto min-h-screen font-sans">
       <div className="mx-auto max-w-screen-xl lg:flex lg:justify-between lg:gap-4 mb-auto">
@@ -7,6 +12,17 @@ const Blog = () => {
             <h3 className="text-xl md:text-2xl font-bold leading-snug text-slate-200 mb-4 uppercase">
               Blog
             </h3>
+
+            <ul>
+              {articles.map((article, id) => (
+                <Link href={`/blog/${article.id}`} key={id}>
+                  <li className="text-lg md:text-xl leading-snug text-slate-200 mb-4">
+                    <div>{article.date}</div>
+                    {article.title} - {article.description}
+                  </li>
+                </Link>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
