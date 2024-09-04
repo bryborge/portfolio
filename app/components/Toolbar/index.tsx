@@ -8,7 +8,7 @@ import Clock from './Clock';
 
 const Toolbar: React.FC = () => {
   return (
-    <div className="bg-slate-200 h-16 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
+    <div className="bg-slate-200 text-slate-800 h-16 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
       <div>
         <Link href="/">
           <button className="ml-8 hover:bg-slate-300 rounded" type="button">
@@ -30,12 +30,12 @@ const Toolbar: React.FC = () => {
             <span>Terminal</span>
           </button>
         </Link>
-        <Link href="/articles">
+        <Link href="/blog">
           <button className="ml-3 hover:bg-slate-300 rounded" type="button">
             {/* <Image
               className="cursor-pointer"
               src={blogIcon}
-              alt="Articles"
+              alt="Blog"
             /> */}
             <span>Blog</span>
           </button>
