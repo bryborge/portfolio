@@ -1,27 +1,27 @@
-// import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 // import blogIcon from './blog-icon.svg';
-// import homeIcon from './home-icon.svg';
+import homeIcon from './home-icon.svg';
 // import terminalIcon from './terminal-icon.svg';
 import Socials from '../Socials';
 import Clock from './Clock';
 
 const Toolbar: React.FC = () => {
   return (
-    <div className="bg-slate-200 text-slate-800 h-16 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
-      <div>
+    <nav className="bg-slate-200 text-slate-800 h-16 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
+      <div className="flex flex-row items-center">
         <Link href="/">
-          <button className="ml-8 hover:bg-slate-300 rounded" type="button">
-            {/* <Image
+          <button className="ml-8 mr-3 h-10 w-10 p-1 hover:bg-slate-300 rounded" type="button">
+            <Image
               className="cursor-pointer"
               src={homeIcon}
               alt="Home"
-            /> */}
-            <span>Home</span>
+            />
           </button>
         </Link>
+
         <Link href="/terminal">
-          <button className="ml-3 hover:bg-slate-300 rounded" type="button">
+          <button className="p-2 hover:bg-slate-300 rounded font-bold" type="button">
             {/* <Image
               className="cursor-pointer"
               src={terminalIcon}
@@ -30,8 +30,9 @@ const Toolbar: React.FC = () => {
             <span>Terminal</span>
           </button>
         </Link>
+
         <Link href="/blog">
-          <button className="ml-3 hover:bg-slate-300 rounded" type="button">
+          <button className="ml-1 p-2 hover:bg-slate-300 rounded font-bold" type="button">
             {/* <Image
               className="cursor-pointer"
               src={blogIcon}
@@ -48,7 +49,7 @@ const Toolbar: React.FC = () => {
         </div>
         <Clock />
       </div>
-    </div>
+    </nav>
   );
 }
 

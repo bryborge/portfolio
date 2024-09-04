@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from "react";
 import * as constants from './constants';
 
+// TODO: Clean this up with a utility class
 const Terminal: React.FC = () => {
   // State
   const [input, setInput] = useState('');
@@ -96,30 +97,32 @@ const Terminal: React.FC = () => {
 
   // TODO: Variablize resume link url
   return (
-    <div className="bg-black text-green-500 p-5 font-mono w-full min-h-screen mx-auto">
-      <div className=" mb-4 overflow-scroll whitespace-nowrap">
-        { output.map((line, index) => (
-          <div key={index}>{line}</div>
-        )) }
+    <main className="mx-auto min-h-screen font-sans absolute w-full">
+      <div className="bg-black text-green-500 p-5 font-mono min-h-screen mx-auto">
+        <div className=" mb-4 overflow-scroll whitespace-nowrap">
+          { output.map((line, index) => (
+            <div key={index}>{line}</div>
+          )) }
+        </div>
+        <div className="flex items-center">
+          <span>{`${PROMPT} `}</span>
+          <input
+            type="text"
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="bg-transparent border-none text-green-500 outline-none flex-grow font-mono px-2" />
+        </div>
+        <a
+          ref={downloadLinkRef}
+          href="https://drive.google.com/uc?export=download&id=18ufroP5j3ALmdSiPGALKevLjIpwvo7kA"
+          download
+          style={{ display: 'none' }}>
+          Download Resume
+        </a>
       </div>
-      <div className="flex items-center">
-        <span>{`${PROMPT} `}</span>
-        <input
-          type="text"
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="bg-transparent border-none text-green-500 outline-none flex-grow font-mono px-2" />
-      </div>
-      <a
-        ref={downloadLinkRef}
-        href="https://drive.google.com/uc?export=download&id=18ufroP5j3ALmdSiPGALKevLjIpwvo7kA"
-        download
-        style={{ display: 'none' }}>
-        Download Resume
-      </a>
-    </div>
+    </main>
   );
 };
 
