@@ -1,5 +1,9 @@
+// Next.js packages
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+// App components
+import Toolbar from "./components/Toolbar";
+// Styles
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,9 +27,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode; }>): JSX.Element {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} bg-slate-100 selection:bg-violet-300 selection:text-violet-900`}>
-        {children}
+      <body className={`${inter.className} bg-slate-100 selection:bg-violet-300 selection:text-violet-900`}>
+        <Toolbar />
+        {/* onTerminalAppClick={handleTerminalToggle} */}
+        <main className="mx-auto min-h-screen font-sans">
+          {children}
+        </main>
+        {/* TODO: Move footer component here */}
       </body>
     </html>
   );
