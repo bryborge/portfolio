@@ -11,26 +11,40 @@ const Blog = async (): Promise<JSX.Element> => {
 
   return (
     <main className="mx-auto min-h-screen font-sans">
-      <div className="mx-auto max-w-screen-xl lg:flex lg:justify-between lg:gap-4 mb-auto">
-        <div className="width-full">
-          <div className="px-12 py-12 md:py-20 lg:px-24 font-sans">
-            <h3 className="text-xl md:text-2xl font-bold leading-snug text-slate-200 mb-4 uppercase">
-              Blog
-            </h3>
-
-            <ul>
-              {articles.map((article, id) => (
-                <Link href={`/blog/${article.id}`} key={id}>
-                  <li className="text-lg md:text-xl leading-snug text-slate-200 mb-4">
-                    <div>{article.date}</div>
-                    {article.title} - {article.description}
-                  </li>
-                </Link>
-              ))}
-            </ul>
-          </div>
+      <section className="mx-auto mb-auto max-w-screen-xl width-full px-12 py-12 md:py-20 md:grid lg:grid-cols-2 font-sans">
+        <div className="mb-4">
+          <h1 className="mb-2 text-slate-200 text-4xl font-bold leading-snug">
+            Blog
+          </h1>
+          <p className="text-lg">Here are my thoughts, tutorials, and more.</p>
         </div>
-      </div>
+
+        <div>
+          {articles.map((article, id) => (
+            <article className="mt-6 mb-4 border-b border-slate-500" key={id}>
+              <div className="mb-4">
+                <span className="text-xs rounded-full bg-amber-400/10 text-amber-300 px-2 py-1">
+                  {article.category}
+                </span>
+              </div>
+              <div className="text-xl text-slate-200 font-bold mb-2">
+                {article.title}
+              </div>
+              <div className="text-md font-sans mb-4">
+                {article.description}
+              </div>
+              <Link href={`/blog/${article.id}`} className="flex justify-end">
+                <div className="flex items-center mb-6 font-bold text-indigo-400">
+                  Read more
+                  <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                  </svg>
+                </div>
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
