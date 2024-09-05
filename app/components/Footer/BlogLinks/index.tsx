@@ -1,17 +1,31 @@
+import { getArticleCategories } from "@/lib/articles";
+import Link from "next/link";
+
 /**
  * Renders the BlogLinks component.
  *
- * @return {JSX.Element} The rendered BlogLinks component.
+ * @return {Promise<JSX.Element>} A promise that resolves to a JSX element
+ *   containing a list of links to blog categories.
  */
-const BlogLinks = (): JSX.Element => {
+const BlogLinks = async (): Promise<JSX.Element> => {
+  const categories = await getArticleCategories();
+ 
+  // TODO: Change href to point to specific blog category, like: `/blog/category/${category}`
   return (
     <div>
       <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
         Blog
       </h6>
-      <p className="mb-4">
-        Coming Soon!
-      </p>
+
+      {categories.map((category) => (
+        <p key={category} className="mb-4">
+          <Link
+            href={'/blog'}
+            className="hover:underline">
+            {category}
+          </Link>
+        </p>
+      ))}
     </div>
   );
 }
