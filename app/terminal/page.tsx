@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from "react";
 import * as constants from './constants';
+import { buildResumeDownloadUrl } from '@/lib/resume';
 
 // TODO: Clean this up with a utility class
 const Terminal: React.FC = () => {
@@ -95,7 +96,8 @@ const Terminal: React.FC = () => {
     }
   };
 
-  // TODO: Variablize resume link url
+  const resume = buildResumeDownloadUrl();
+
   return (
     <main className="mx-auto min-h-screen font-sans absolute w-full">
       <div className="bg-black text-green-500 p-5 font-mono min-h-screen mx-auto">
@@ -116,7 +118,7 @@ const Terminal: React.FC = () => {
         </div>
         <a
           ref={downloadLinkRef}
-          href="https://drive.google.com/uc?export=download&id=18ufroP5j3ALmdSiPGALKevLjIpwvo7kA"
+          href={resume}
           download
           style={{ display: 'none' }}>
           Download Resume
