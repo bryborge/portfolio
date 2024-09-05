@@ -1,8 +1,13 @@
-import { getArticleItems } from "@/lib/articles";
+import { getAllArticles } from "@/lib/articles";
 import Link from "next/link";
 
-const Blog = () => {
-  const articles = getArticleItems();
+/**
+ * Renders the blog page with a list of all articles.
+ * 
+ * @returns {Promise<JSX.Element>} The rendered blog page.
+ */
+const Blog = async (): Promise<JSX.Element> => {
+  const articles = await getAllArticles();
 
   return (
     <main className="mx-auto min-h-screen font-sans">

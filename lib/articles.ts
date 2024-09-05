@@ -4,7 +4,7 @@ import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
 
-type articleItem = {
+type article = {
   id: string;
   title: string;
   date: string;
@@ -12,14 +12,21 @@ type articleItem = {
   description: string;
 };
 
-const articlesDirectory = path.join(process.cwd(), "articles");
+// The path to the articles directory
+const articlesDir = path.join(process.cwd(), "articles");
 
-export const getArticleItems = (): articleItem[] => {
-  const fileNames = fs.readdirSync(articlesDirectory);
+
+  /**
+   * Returns the data for all articles in the articles directory.
+   *
+   * @returns {Promise<article[]>} A promise that resolves to an array of objects containing the article data. The array is sorted in descending order by date.
+   */
+export const getAllArticles = async (): Promise<article[]> => {
+  const fileNames = fs.readdirSync(articlesDir);
 
   const allArticlesData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(articlesDirectory, fileName);
+    const fullPath = path.join(articlesDir, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
 
     const matterResult = matter(fileContents);
@@ -42,9 +49,15 @@ export const getArticleItems = (): articleItem[] => {
   });
 };
 
-export const getArticleCategories = (): string[] => {
-  const articleItems = getArticleItems();
+/**
+ * Returns an array of unique article categories.
+ *
+ * @return {string[]} A list of unique article categories.
+ */
+export const getArticleCategories = async (): Promise<string[]> => {
+  const articleItems = await getAllArticles();
   const categories = new Set<string>();
+
   articleItems.forEach((article) => {
     if (article.category) {
       categories.add(article.category);
@@ -54,14 +67,15 @@ export const getArticleCategories = (): string[] => {
   return Array.from(categories);
 }
 
-// TODO: add date filtering
-// TODO: add category filtering
-// export const getCategorizedArticles = (category: any = null): articleItem[] => {
-//   return getArticleItems().filter((article) => article.category === category);
-// };
 
-export const getArticleSlugs = async (): Promise<any> => {
-  const fileNames = fs.readdirSync(articlesDirectory);
+/**
+ * Returns an array of article slugs.
+ *
+ * @return {Promise<{slug: string}[]>} A promise that resolves to an array of objects containing the slug of each article.
+ */
+export const getArticleSlugs = async (): Promise<{slug: string}[]> => {
+  const fileNames = fs.readdirSync(articlesDir);
+
   return fileNames.map(fileName => {
     return {
       slug: fileName.replace(/\.md$/, ''),
@@ -69,8 +83,19 @@ export const getArticleSlugs = async (): Promise<any> => {
   });
 }
 
-export const getArticleData = async (id: string): Promise<any> => {
-  const fullPath = path.join(articlesDirectory, `${id}.md`);
+
+/**
+ * Returns the data for a single article, given its id.
+ *
+ * @param {string} id The id of the article to retrieve.
+ * @return {Promise<Object | null>} A promise that resolves to the article data, or null if the article does not exist.
+ */
+export const getArticleData = async (id: string): Promise<{
+  id: string;
+  contentHtml: string;
+  category?: string;
+}> => {
+  const fullPath = path.join(articlesDir, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
   const processedContent = await remark()

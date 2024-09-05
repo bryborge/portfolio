@@ -2,12 +2,13 @@ import { getArticleCategories } from "@/lib/articles";
 import Link from "next/link";
 
 /**
- * Renders the BlogLinks component.
+ * A component that renders a list of links to blog categories.
  *
- * @return {JSX.Element} The rendered BlogLinks component.
+ * @return {Promise<JSX.Element>} A promise that resolves to a JSX element
+ *   containing a list of links to blog categories.
  */
-const BlogLinks = (): JSX.Element => {
-  const categories = getArticleCategories();
+const BlogLinks = async (): Promise<JSX.Element> => {
+  const categories = await getArticleCategories();
  
   // TODO: Change href to point to specific blog category, like: `/blog/category/${category}`
   return (
