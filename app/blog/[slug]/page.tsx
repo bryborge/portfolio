@@ -31,12 +31,6 @@ const Article = async ({ params }: { params: { slug: string } }): Promise<JSX.El
   return (
     <main className="mx-auto mb-auto min-h-screen max-w-screen-xl lg:gap-4 width-full px-12 py-12 md:py-20 lg:px-24 font-sans">
       <article className="article" dangerouslySetInnerHTML={{ __html: articleData.contentHtml }} />
-
-      <Link
-        href="/blog"
-        className="rounded-full bg-indigo-400 px-4 py-2 font-heavy leading-5 text-indigo-950 hover:bg-indigo-300">
-          Back to Blog
-      </Link>
     </main>
   );
 }
