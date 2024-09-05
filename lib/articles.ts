@@ -15,12 +15,11 @@ type article = {
 // The path to the articles directory
 const articlesDir = path.join(process.cwd(), "articles");
 
-
-  /**
-   * Returns the data for all articles in the articles directory.
-   *
-   * @returns {Promise<article[]>} A promise that resolves to an array of objects containing the article data. The array is sorted in descending order by date.
-   */
+/**
+ * Returns the data for all articles in the articles directory.
+ *
+ * @returns {Promise<article[]>} A promise that resolves to an array of objects containing the article data. The array is sorted in descending order by date.
+ */
 export const getAllArticles = async (): Promise<article[]> => {
   const fileNames = fs.readdirSync(articlesDir);
 
@@ -67,7 +66,6 @@ export const getArticleCategories = async (): Promise<string[]> => {
   return Array.from(categories);
 }
 
-
 /**
  * Returns an array of article slugs.
  *
@@ -82,7 +80,6 @@ export const getArticleSlugs = async (): Promise<{slug: string}[]> => {
     };
   });
 }
-
 
 /**
  * Returns the data for a single article, given its id.

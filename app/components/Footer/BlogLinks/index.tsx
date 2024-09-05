@@ -2,7 +2,7 @@ import { getArticleCategories } from "@/lib/articles";
 import Link from "next/link";
 
 /**
- * A component that renders a list of links to blog categories.
+ * Renders the BlogLinks component.
  *
  * @return {Promise<JSX.Element>} A promise that resolves to a JSX element
  *   containing a list of links to blog categories.

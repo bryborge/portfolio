@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-// import blogIcon from './blog-icon.svg';
 import homeIcon from './home-icon.svg';
-// import terminalIcon from './terminal-icon.svg';
 import Socials from '../Socials';
 import Clock from './Clock';
 
@@ -22,22 +20,12 @@ const Toolbar: React.FC = () => {
 
         <Link href="/terminal">
           <button className="p-2 hover:bg-slate-300 rounded font-bold" type="button">
-            {/* <Image
-              className="cursor-pointer"
-              src={terminalIcon}
-              alt="The 'terminal' app"
-            /> */}
             <span>Terminal</span>
           </button>
         </Link>
 
         <Link href="/blog">
           <button className="ml-1 p-2 hover:bg-slate-300 rounded font-bold" type="button">
-            {/* <Image
-              className="cursor-pointer"
-              src={blogIcon}
-              alt="Blog"
-            /> */}
             <span>Blog</span>
           </button>
         </Link>
