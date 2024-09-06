@@ -17,7 +17,6 @@ It is a NextJS application and was bootstrapped using [`create-next-app`](https:
 You could also use Docker to spin up the application locally, though it is generally a nicer, faster experience to work
 on the application natively on your development machine.
 
-
 Now, open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## Testing
