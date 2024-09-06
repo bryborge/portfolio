@@ -1,34 +1,47 @@
-import Image from 'next/image';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import homeIcon from './home-icon.svg';
+import HomeIcon from '../Icons/HomeIcon';
 import Socials from '../Socials';
 import Clock from './Clock';
+import TerminalIcon from '../Icons/TerminalIcon';
+import BlogIcon from '../Icons/BlogIcon';
 
 const Toolbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <nav className="bg-slate-200 text-slate-800 h-16 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
-      <div className="flex flex-row items-center">
-        <Link href="/">
-          <button className="ml-8 mr-3 h-10 w-10 p-1 hover:bg-slate-300 rounded" type="button">
-            <Image
-              className="cursor-pointer"
-              src={homeIcon}
-              alt="Home"
-            />
-          </button>
-        </Link>
-
-        <Link href="/terminal">
-          <button className="p-2 hover:bg-slate-300 rounded font-bold" type="button">
-            <span>Terminal</span>
-          </button>
-        </Link>
-
-        <Link href="/blog">
-          <button className="ml-1 p-2 hover:bg-slate-300 rounded font-bold" type="button">
-            <span>Blog</span>
-          </button>
-        </Link>
+    <nav className="bg-slate-200 text-slate-800 h-14 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
+      <div className="flex flex-row items-center ml-4">
+        <button className="flex flex-col justify-center items-center font-bold text-slate-800 hover:bg-slate-300 px-3 py-4 rounded" type="button" onClick={handleClick}>
+          <span className={`bg-slate-800 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`} ></span>
+          <span className={`bg-slate-800 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`} ></span>
+          <span className={`bg-slate-800 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`} ></span>
+        </button>
+        <div className={`${isOpen ? 'flex' : 'hidden'} flex-col absolute top-16 bg-slate-200 min-w-48 rounded`} onBlur={handleClick}>
+          <ol className="text-lg font-sans p-2" onClick={handleClick}>
+            <Link href="/">
+              <li className="px-4 flex flex-row items-center hover:bg-slate-300">
+                <HomeIcon /><span className="ml-2">Home</span>
+              </li>
+            </Link>
+            <Link href="/terminal" onClick={handleClick}>
+              <li className="px-4 flex flex-row items-center hover:bg-slate-300">
+                <TerminalIcon /><span className="ml-2">Terminal</span>
+              </li>
+            </Link>
+            <Link href="/blog" onClick={handleClick}>
+              <li className="px-4 flex flex-row items-center hover:bg-slate-300">
+                <BlogIcon /><span className="ml-1">Blog</span>
+              </li>
+            </Link>
+          </ol>
+        </div>
       </div>
       <div></div>
       <div className="flex flex-row">
