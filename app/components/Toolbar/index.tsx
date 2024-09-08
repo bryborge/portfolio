@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import HomeIcon from '../Icons/HomeIcon';
 import Socials from '../Socials';
 import Clock from './Clock';
@@ -9,8 +10,23 @@ import TerminalIcon from '../Icons/TerminalIcon';
 import BlogIcon from '../Icons/BlogIcon';
 
 const Toolbar: React.FC = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  /**
+   * Closes the menu on new navigations.
+   *
+   * @return {void}
+   */
+  useEffect(() => {
+    setIsOpen(false); 
+  }, [pathname]);
+
+  /**
+   * Toggles the menu open/closed state.
+   *
+   * @return {void}
+   */
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
