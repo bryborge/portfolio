@@ -9,13 +9,14 @@ import * as constants from '../app/terminal/constants';
    */
 export const useTypingIndex = (setOutput: Dispatch<SetStateAction<string[]>>) => {
   const [typingIndex, setTypingIndex] = useState(0);
+  const TYPING_SPEED = 25;
 
   useEffect(() => {
     if (typingIndex < constants.initialMessageLines.length) {
       const timeout = setTimeout(() => {
         setOutput((prevOutput: any) => [...prevOutput, constants.initialMessageLines[typingIndex]]);
         setTypingIndex(typingIndex + 1);
-      }, 25); // Adjust typing speed here
+      }, TYPING_SPEED);
       return () => clearTimeout(timeout);
     }
   }, [typingIndex, setOutput]);
