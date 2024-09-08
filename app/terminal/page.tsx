@@ -1,40 +1,26 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import * as constants from './constants';
 import { buildResumeDownloadUrl } from '@/lib/resume';
+import { useInputFocus, useTypingIndex } from '@/lib/terminal';
 
-// TODO: Clean this up with a utility class
 const Terminal: React.FC = () => {
+  // Router
+  const router = useRouter();
   // State
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<string[]>([]);
-  const [typingIndex, setTypingIndex] = useState(0);
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
-
+  // Constants
   const PROMPT = 'root@root:~$';
 
-  // React hooks
-  useEffect(() => {
-    if (typingIndex < constants.initialMessageLines.length) {
-      const timeout = setTimeout(() => {
-        setOutput((prevOutput) => [...prevOutput, constants.initialMessageLines[typingIndex]]);
-        setTypingIndex(typingIndex + 1);
-      }, 25); // Adjust typing speed here
-      return () => clearTimeout(timeout);
-    }
-  }, [typingIndex]);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
-
-  const router = useRouter();
+  // Terminal library functions
+  useTypingIndex(setOutput);
+  useInputFocus(inputRef);
   
   /**
    * Handles the keydown event for the input element. If the pressed key is 'Enter',
@@ -78,13 +64,13 @@ const Terminal: React.FC = () => {
           newOutput.push("* Gitlab: https://gitlab.com/users/bryborge/projects");
         } else if (input === 'uptime') {
           newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him!`);
+        } else if (input.match('rm')) {
+          newOutput.push(`That is truly appalling behavior and you should be ashamed of yourself.`);
         } else if (linuxCommandInputted != -1) {
           newOutput.push("What do you think this is, your personal playground? :P")
         } else if (input.match('whoami') || input.match('whois')) {
           newOutput.push(`Cogito, ergo sum.`);
           newOutput.push(`According to Rene Descartes, this is the first principle from which one might begin to answer that question.`);
-        } else if (input.match('rm')) {
-          newOutput.push(`That is truly appalling behavior and you should be ashamed of yourself.`);
         } else {
           newOutput.push(`brysh: command not found: ${input}`);
         }
