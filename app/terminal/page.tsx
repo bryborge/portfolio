@@ -15,7 +15,7 @@ const Terminal: React.FC = () => {
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
-
+  // Constants
   const PROMPT = 'root@root:~$';
 
   // Terminal library functions
