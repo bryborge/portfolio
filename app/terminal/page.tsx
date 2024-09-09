@@ -143,6 +143,7 @@ const Terminal: React.FC = () => {
       } else if (constants.linuxList.findIndex((i) => input.includes(i)) != -1) {
         cmdOutput.push("\xa0");
         cmdOutput.push("What do you think this is, your personal playground? :P")
+        writeCmdOutput(cmdOutput);
       } else {
         const handler = terminalCommands[input] || terminalCommands['unknown'];
         handler();
