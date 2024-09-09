@@ -28,14 +28,14 @@ const asciiArt = [
 '\xa0\xa0\xa0\xa0\\___)=(___/\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0RAM:\xa01265MiB\xa0/\xa08196MiB',
 ];
 
-const availableCommands = [
-  { command: 'clear', description: 'Clear the terminal screen' },
-  { command: 'help', description: 'List available commands' },
-  { command: 'hire', description: "Download Bryan's resume" },
-  { command: 'projects', description: "List Bryan's code project repositories" },
-  { command: 'uptime', description: 'Print how long Bryan has been coding' },
-  { command: 'exit', description: 'Exit current terminal session' },
-];
+// const availableCommands = [
+//   { command: 'clear', description: 'Clear the terminal screen' },
+//   { command: 'help', description: 'List available commands' },
+//   { command: 'hire', description: "Download Bryan's resume" },
+//   { command: 'projects', description: "List Bryan's code project repositories" },
+//   { command: 'uptime', description: 'Print how long Bryan has been coding' },
+//   { command: 'exit', description: 'Exit current terminal session' },
+// ];
 
 const linuxList: string[] = ['cd', 'ps', 'pwd', 'touch', 'mv', 'grep', 'sed', 'awk', 'tail', 'sudo', 'kill', 'killall', 'top', 'htop', 'free', 'df', 'du', 'ls', 'cat', 'hostname', 'curl'];
 
@@ -47,4 +47,4 @@ const helpMsg = [
 
 const initialMessageLines = asciiArt.concat(helpMsg);
 
-export { availableCommands, linuxList, initialMessageLines, daysOfCoding };
+export {linuxList, initialMessageLines, daysOfCoding };
