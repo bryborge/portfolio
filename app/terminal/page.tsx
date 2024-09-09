@@ -1,10 +1,9 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as constants from './constants';
 import { buildResumeDownloadUrl } from '@/lib/resume';
-import { useInputFocus, useTypingIndex } from '@/lib/terminal';
 
 const Terminal: React.FC = () => {
   // Router
@@ -14,84 +13,158 @@ const Terminal: React.FC = () => {
   const [output, setOutput] = useState<string[]>([]);
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
+  const bottomRef = useRef<HTMLInputElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   // Constants
   const PROMPT = 'root@root:~$';
+  const cmdOutput: string[] = [];
 
-  // Terminal library functions
-  useTypingIndex(setOutput);
-  useInputFocus(inputRef);
+  const [typingIndex, setTypingIndex] = useState(0);
+  const TYPING_SPEED = 25;
+
+  useEffect(() => {
+    if (typingIndex < constants.initialMessageLines.length) {
+      const timeout = setTimeout(() => {
+        setOutput((prevOutput: any) => [...prevOutput, constants.initialMessageLines[typingIndex]]);
+        setTypingIndex(typingIndex + 1);
+      }, TYPING_SPEED);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [setOutput, typingIndex]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
+
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [output]);
   
-  /**
-   * Handles the keydown event for the input element. If the pressed key is 'Enter',
-   * it checks the value of the input and performs different actions based on its value.
-   *
-   * @param {React.KeyboardEvent<HTMLInputElement>} e - The keydown event object.
-   * @return {void} This function does not return anything.
-   */
+  const writeCmdOutput = (output: string[]) => {
+    let index = 0;
+
+    const intervalId = setInterval(() => {
+      if (index < output.length) {
+        setOutput(prevOutput => [...prevOutput, output[index]]);
+        index++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, TYPING_SPEED);
+  }
+
+  const handleClearBuffer = (): void => {
+    setOutput([]);
+  }
+
+  const handleExit = (): void => {
+    router.push('/');
+  }
+
+  const handleHelp = (): void => {
+    cmdOutput.push("\xa0");
+    cmdOutput.push('------------------');
+    cmdOutput.push('AVAILABLE COMMANDS');
+    cmdOutput.push('------------------');
+    cmdOutput.push("\xa0");
+    cmdOutput.push("* clear:\xa0\xa0\xa0\xa0Clear the terminal screen");
+    cmdOutput.push("* help:\xa0\xa0\xa0\xa0\xa0Show this help message");
+    cmdOutput.push("* hire:\xa0\xa0\xa0\xa0\xa0Download Bryan's resume");
+    cmdOutput.push("* projects:\xa0List Bryan's code project repositories");
+    cmdOutput.push("* uptime:\xa0\xa0\xa0Print how long Bryan has been coding");
+    cmdOutput.push("* exit:\xa0\xa0\xa0\xa0\xa0Exit current terminal session");
+    
+    writeCmdOutput(cmdOutput);    
+  }
+
+  const handleHire = (): void => {
+    cmdOutput.push("\xa0");
+    cmdOutput.push("Resume downloading! Feel free to continue looking around...");
+
+    if (downloadLinkRef.current) {
+      downloadLinkRef.current.click();
+    }
+
+    writeCmdOutput(cmdOutput);
+  }
+
+  const handleProjects = (): void => {
+    cmdOutput.push("\xa0");
+    cmdOutput.push("----------------------------");
+    cmdOutput.push("Bryan's Project Repositories");
+    cmdOutput.push("----------------------------");
+    cmdOutput.push("\xa0");
+    cmdOutput.push("* Github: https://github.com/bryborge?tab=repositories");
+    cmdOutput.push("* Gitlab: https://gitlab.com/users/bryborge/projects");
+  
+    writeCmdOutput(cmdOutput);
+  }
+
+  const handleUptime = (): void => {
+    cmdOutput.push("\xa0");
+    cmdOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him!`);
+  
+    writeCmdOutput(cmdOutput);
+  }
+
+  const handleUnknown = (): void => {
+    setOutput([...output, `brysh: command not found: ${input}`]);
+  }
+
+  const terminalCommands: Record<string, () => void> = {
+    clear: handleClearBuffer as () => void,
+    exit: handleExit as () => void,
+    help: handleHelp as () => void,
+    hire: handleHire as () => void,
+    projects: handleProjects as () => void,
+    uptime: handleUptime as () => void,
+    unknown: handleUnknown as () => void,
+  }
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      const linuxCommandInputted = constants.linuxList.findIndex((i) => input.includes(i));
+      setOutput([...output, `${PROMPT} ${input}`]);
+      setInput('');
 
-      if (input === 'clear') {
-        setOutput([]); // Clear the output
-      } else if (input === 'exit') {
-        router.push('/');
+      if (input.match('rm')) {
+        cmdOutput.push("\xa0");
+        cmdOutput.push(`That is truly appalling behavior and you should be ashamed of yourself.`);
+        writeCmdOutput(cmdOutput);
+      } else if (input.match('whoami') || input.match('whois')) {
+        cmdOutput.push("\xa0");
+        cmdOutput.push(`Cogito, ergo sum.`);
+        cmdOutput.push(`According to Rene Descartes, this is the first principle from which one might begin to answer that question.`);
+        writeCmdOutput(cmdOutput);
+      } else if (constants.linuxList.findIndex((i) => input.includes(i)) != -1) {
+        cmdOutput.push("\xa0");
+        cmdOutput.push("What do you think this is, your personal playground? :P")
+        writeCmdOutput(cmdOutput);
       } else {
-        const newOutput = [...output, `${PROMPT} ${input}`];
-
-        if (input === '' || input.trim().length === 0) {
-          newOutput.push(`${input}`);
-        } else if (input === 'help') {
-          newOutput.push('------------------');
-          newOutput.push('AVAILABLE COMMANDS');
-          newOutput.push('------------------');
-          newOutput.push("\xa0");
-          constants.availableCommands.forEach((cmd) =>
-            newOutput.push(`* ${cmd.command}: ${cmd.description}`),
-          );
-        } else if (input === 'hire') {
-          newOutput.push('Resume downloading! Feel free to continue looking around...');
-          if (downloadLinkRef.current) {
-            downloadLinkRef.current.click();
-          }
-        } else if (input === 'projects') {
-          newOutput.push("----------------------------");
-          newOutput.push("Bryan's Project Repositories");
-          newOutput.push("----------------------------");
-          newOutput.push("\xa0");
-          newOutput.push("* Github: https://github.com/bryborge?tab=repositories");
-          newOutput.push("* Gitlab: https://gitlab.com/users/bryborge/projects");
-        } else if (input === 'uptime') {
-          newOutput.push(`Bryan has been coding for ${constants.daysOfCoding()} days! Please DO NOT reset him!`);
-        } else if (input.match('rm')) {
-          newOutput.push(`That is truly appalling behavior and you should be ashamed of yourself.`);
-        } else if (linuxCommandInputted != -1) {
-          newOutput.push("What do you think this is, your personal playground? :P")
-        } else if (input.match('whoami') || input.match('whois')) {
-          newOutput.push(`Cogito, ergo sum.`);
-          newOutput.push(`According to Rene Descartes, this is the first principle from which one might begin to answer that question.`);
-        } else {
-          newOutput.push(`brysh: command not found: ${input}`);
-        }
-
-        setOutput(newOutput);
+        const handler = terminalCommands[input] || terminalCommands['unknown'];
+        handler();
       }
-
-      setInput(''); // Clear the input
     }
-  };
+  }
 
   const resume = buildResumeDownloadUrl();
 
+  // TODO: Break down into smaller components
   return (
-    <main className="mx-auto min-h-screen font-sans absolute w-full">
-      <div className="bg-black text-green-500 p-5 font-mono min-h-screen mx-auto">
-        <div className=" mb-4 overflow-scroll whitespace-nowrap">
-          { output.map((line, index) => (
+    <main className="mx-auto font-sans absolute sticky top-0 w-full">
+      <div className="bg-black text-green-500 p-5 pt-20 font-mono min-h-screen overflow-x-auto mx-auto">
+        {/* "terminal output" */}
+        <div className=" mb-4 whitespace-nowrap">
+          {output.map((line, index) => (
             <div key={index}>{line}</div>
-          )) }
+          ))}
         </div>
+
+        {/* "terminal input" */}
         <div className="flex items-center">
           <span>{`${PROMPT} `}</span>
           <input
@@ -110,6 +183,7 @@ const Terminal: React.FC = () => {
           Download Resume
         </a>
       </div>
+      <div className="absolute bottom-0" ref={bottomRef} />
     </main>
   );
 };
