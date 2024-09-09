@@ -13,6 +13,7 @@ const Terminal: React.FC = () => {
   const [output, setOutput] = useState<string[]>([]);
   // Refs
   const inputRef = useRef<HTMLInputElement>(null);
+  const bottomRef = useRef<HTMLInputElement>(null);
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   // Constants
   const PROMPT = 'root@root:~$';
@@ -35,9 +36,14 @@ const Terminal: React.FC = () => {
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
-      inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [inputRef]);
+
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [output]);
   
   const writeCmdOutput = (output: string[]) => {
     let index = 0;
@@ -176,6 +182,7 @@ const Terminal: React.FC = () => {
           Download Resume
         </a>
       </div>
+      <div className="absolute bottom-0" ref={bottomRef} />
     </main>
   );
 };
