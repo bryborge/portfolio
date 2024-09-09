@@ -35,6 +35,7 @@ const Terminal: React.FC = () => {
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
+      inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [inputRef]);
   
@@ -147,10 +148,10 @@ const Terminal: React.FC = () => {
 
   // TODO: Break down into smaller components
   return (
-    <main className="mx-auto min-h-screen font-sans absolute w-full">
-      <div className="bg-black text-green-500 p-5 font-mono min-h-screen mx-auto">
+    <main className="mx-auto font-sans absolute sticky top-0 w-full">
+      <div className="bg-black text-green-500 p-5 pt-20 font-mono min-h-screen overflow-x-auto mx-auto">
         {/* "terminal output" */}
-        <div className=" mb-4 overflow-scroll whitespace-nowrap">
+        <div className=" mb-4 whitespace-nowrap">
           {output.map((line, index) => (
             <div key={index}>{line}</div>
           ))}
