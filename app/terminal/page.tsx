@@ -155,7 +155,7 @@ const Terminal: React.FC = () => {
 
   // TODO: Break down into smaller components
   return (
-    <main className="mx-auto font-sans absolute sticky top-0 w-full">
+    <main className="mx-auto font-sans sticky top-0 w-full">
       <div className="bg-black text-green-500 p-5 pt-20 font-mono min-h-screen overflow-x-auto mx-auto">
         {/* "terminal output" */}
         <div className=" mb-4 whitespace-nowrap">

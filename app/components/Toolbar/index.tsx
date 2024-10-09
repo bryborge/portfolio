@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import HomeIcon from '../Icons/HomeIcon';
 import Socials from '../Socials';
-import Clock from './Clock';
 import TerminalIcon from '../Icons/TerminalIcon';
 import BlogIcon from '../Icons/BlogIcon';
 
@@ -32,7 +31,7 @@ const Toolbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-slate-200 text-slate-800 h-14 w-auto flex flex-row justify-between items-center absolute sticky top-0 z-50">
+    <nav className="bg-slate-200 text-slate-800 h-14 w-auto flex flex-row justify-between items-center sticky top-0 z-50">
       <div className="flex flex-row items-center ml-4">
         <button className="flex flex-col justify-center items-center font-bold text-slate-800 hover:bg-slate-300 px-3 py-4 rounded" type="button" onClick={handleClick}>
           <span className={`bg-slate-800 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`} ></span>
@@ -64,7 +63,6 @@ const Toolbar: React.FC = () => {
         <div className="mr-4 mt-1">
           <Socials />
         </div>
-        <Clock />
       </div>
     </nav>
   );
