@@ -1,6 +1,8 @@
 import { getArticleCategories } from "@/lib/articles";
 import Link from "next/link";
 
+import type { JSX } from "react";
+
 /**
  * Renders the BlogLinks component.
  *

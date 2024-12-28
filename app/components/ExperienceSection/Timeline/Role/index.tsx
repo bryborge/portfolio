@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 const Role = ( { role }: { role: any }): JSX.Element => {
   return (
     <div key={role.title}>

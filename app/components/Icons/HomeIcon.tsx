@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 const HomeIcon = (): JSX.Element => {
   return (
     <svg fill="#1e293b" height="20" width="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612">

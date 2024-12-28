@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 /**
  * Renders an X icon as an SVG element.
  *

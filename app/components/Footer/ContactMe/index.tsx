@@ -2,6 +2,8 @@ import HouseIcon from "../../Icons/HouseIcon";
 import MailIcon from "../../Icons/MailIcon";
 import PhoneIcon from "../../Icons/PhoneIcon";
 
+import type { JSX } from "react";
+
 /**
  * Renders the ContactMe component with contact information.
  *

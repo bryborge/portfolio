@@ -1,5 +1,7 @@
 import { buildResumeViewUrl } from "@/lib/resume";
 
+import type { JSX } from "react";
+
 /**
  * Renders a link to view the full résumé.
  *

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 /**
  * Renders the PortfolioLinks component.
  *

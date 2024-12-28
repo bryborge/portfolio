@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from 'next/image';
 import portrait from "./bryan_portrait_web_blob.png";
 
+import type { JSX } from "react";
+
 /**
  * Renders the hero component with links to social media profiles.
  *

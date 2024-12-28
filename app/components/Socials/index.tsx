@@ -2,6 +2,8 @@ import GitHubIcon from "../Icons/GitHubIcon";
 import LinkedInIcon from "../Icons/LinkedInIcon";
 import XIcon from "../Icons/XIcon";
 
+import type { JSX } from "react";
+
 /**
  * Renders a list of social media icons with their respective links.
  *

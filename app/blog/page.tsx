@@ -1,6 +1,8 @@
 import { getAllArticles } from "@/lib/articles";
 import Article from "./components/Article";
 
+import type { JSX } from "react";
+
 /**
  * Renders the blog page with a list of all articles.
  * 

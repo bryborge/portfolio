@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 /**
  * Renders a phone icon as an SVG element.
  *
