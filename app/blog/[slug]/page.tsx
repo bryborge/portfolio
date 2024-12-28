@@ -1,4 +1,4 @@
-import { getArticleData, getArticleSlugs } from "@/lib/articles";
+import { getArticleData, getArticleMeta, getArticleSlugs } from "@/lib/articles";
 
 import type { JSX } from "react";
 
@@ -29,10 +29,17 @@ export const generateStaticParams = async (): Promise<{ slug: string; }[]> => {
 const Article = async (props: { params: Promise<{ slug: string }> }): Promise<JSX.Element> => {
   const params = await props.params;
   const articleData = await getArticleData(params.slug);
+  const articleMeta = await getArticleMeta(params.slug);
 
   return (
     <main className="mx-auto mb-auto min-h-screen max-w-screen-xl lg:gap-4 width-full px-12 py-12 md:py-20 lg:px-24 font-sans">
-      <article className="article" dangerouslySetInnerHTML={{ __html: articleData.contentHtml }} />
+      <article className="article">
+        <h1>{`${articleMeta?.title}`}</h1>
+        <h2>{`${articleMeta?.description}`}</h2>
+        <p className="mb-3 text-sm">{`${articleMeta?.date}`}</p>
+        <hr />
+        <section dangerouslySetInnerHTML={{ __html: articleData.contentHtml }} />
+      </article>
     </main>
   );
 }
