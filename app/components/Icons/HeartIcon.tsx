@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 const HeartIcon = (): JSX.Element => {
   return (
     <svg viewBox="0 0 24 24">

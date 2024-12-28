@@ -1,6 +1,8 @@
 import ExperienceSection from "./components/ExperienceSection";
 import Hero from "./components/Hero";
 
+import type { JSX } from "react";
+
 /**
  * Renders the Home page component.
  *

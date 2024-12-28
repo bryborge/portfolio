@@ -29,7 +29,7 @@ export const useTypingIndex = (setOutput: Dispatch<SetStateAction<string[]>>) =>
  * @param {React.MutableRefObject<HTMLInputElement | null>} ref - The ref to the input element
  * @returns {void}
  */
-export const useInputFocus = (ref: RefObject<HTMLInputElement>) => {
+export const useInputFocus = (ref: RefObject<HTMLInputElement | null>) => {
   useEffect(() => {
     if (ref.current) {
       ref.current.focus();

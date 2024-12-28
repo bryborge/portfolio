@@ -4,6 +4,8 @@ import PortfolioLinks from "./PortfolioLinks";
 import BlogLinks from "./BlogLinks";
 import ContractMe from "./ContactMe";
 
+import type { JSX } from "react";
+
 /**
  * Renders the Footer component.
  *

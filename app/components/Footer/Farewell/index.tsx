@@ -1,5 +1,7 @@
 import HeartIcon from "../../Icons/HeartIcon";
 
+import type { JSX } from "react";
+
 /**
  * Renders the Farewell component to display a thank you message.
  *

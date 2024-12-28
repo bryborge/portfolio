@@ -1,6 +1,8 @@
 import ResumeLink from "./ResumeLink";
 import Timeline from "./Timeline";
 
+import type { JSX } from "react";
+
 /**
  * Renders the ExperienceSection component with professional experience information.
  *

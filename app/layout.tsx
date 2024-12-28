@@ -7,6 +7,8 @@ import Toolbar from "./components/Toolbar";
 // Styles
 import "./globals.css";
 
+import type { JSX } from "react";
+
 const inter = Inter({ subsets: ["latin"] });
 
 /**

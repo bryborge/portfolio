@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { formatDistanceToNow, parse } from 'date-fns';
 
-  /**
-   * Renders a single blog article.
-   *
-   * @param {{ article: any }} props - The article to render.
-   * @returns {JSX.Element} The rendered article component.
-   */
+import type { JSX } from "react";
+
+/**
+ * Renders a single blog article.
+ *
+ * @param {{ article: any }} props - The article to render.
+ * @returns {JSX.Element} The rendered article component.
+ */
 const Article = ({ article }: { article: any }): JSX.Element => {
   const date = parse(article.date, 'MM-dd-yyyy', new Date());
   const timeAgo = formatDistanceToNow(date, { addSuffix: true });

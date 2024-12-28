@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 /**
  * Returns an SVG element representing a house icon.
  *

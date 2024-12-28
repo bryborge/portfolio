@@ -1,6 +1,8 @@
 import { experienceData } from "@/lib/resume";
 import Role from "./Role";
 
+import type { JSX } from "react";
+
 /**
  * Renders a timeline of experiences including company names, roles, technologies, and dates.
  *

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 /**
  * Renders a mail icon as an SVG element.
  *

@@ -1,5 +1,7 @@
 import Socials from "../../Socials";
 
+import type { JSX } from "react";
+
 /**
  * Renders the CallToAction component.
  *

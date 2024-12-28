@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { getArticleData, getArticleSlugs } from "@/lib/articles";
+
+import type { JSX } from "react";
 
 /**
  * Generates static params for the blog pages. The static params are based on the
@@ -25,7 +26,8 @@ export const generateStaticParams = async (): Promise<{ slug: string; }[]> => {
  * @param {string} props.params.slug - The slug for the article to be rendered.
  * @returns {Promise<JSX.Element>} The rendered article page.
  */
-const Article = async ({ params }: { params: { slug: string } }): Promise<JSX.Element> => {
+const Article = async (props: { params: Promise<{ slug: string }> }): Promise<JSX.Element> => {
+  const params = await props.params;
   const articleData = await getArticleData(params.slug);
 
   return (
