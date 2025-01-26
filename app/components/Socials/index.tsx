@@ -1,6 +1,5 @@
 import GitHubIcon from "../Icons/GitHubIcon";
 import LinkedInIcon from "../Icons/LinkedInIcon";
-import XIcon from "../Icons/XIcon";
 
 import type { JSX } from "react";
 
@@ -20,11 +19,6 @@ const Socials = (): JSX.Element => {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/bryborge/",
       icon: <LinkedInIcon />
-    },
-    {
-      name: "X",
-      href: "https://x.com/bryborge",
-      icon: <XIcon />
     },
   ]
 
