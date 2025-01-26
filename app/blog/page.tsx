@@ -24,7 +24,7 @@ const Blog = async (): Promise<JSX.Element> => {
         <div>
           {articles.map((article, id) => (
             <Article key={id} article={article} />
-          ))}
+          )).reverse()}
         </div>
       </section>
     </main>

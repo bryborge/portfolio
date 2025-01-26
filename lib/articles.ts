@@ -106,3 +106,26 @@ export const getArticleData = async (id: string): Promise<{
     ...matterResult.data
   }
 }
+
+/**
+ * Returns the metadata for a single article, given its id.
+ *
+ * @param {string} id The id of the article to retrieve metadata for.
+ * @return {Promise<article | null>} A promise that resolves to the article metadata, or null if the article does not exist.
+ */
+export const getArticleMeta = async (id: string): Promise<article | null> => {
+  const fullPath = path.join(articlesDir, `${id}.md`);
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const matterResult = matter(fileContents);
+
+  return {
+    id,
+    title: matterResult.data.title,
+    date: matterResult.data.date,
+    category: matterResult.data.category,
+    description: matterResult.data.description
+  };
+}

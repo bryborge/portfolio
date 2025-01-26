@@ -27,7 +27,7 @@ const Article = ({ article }: { article: any }): JSX.Element => {
         {article.title}
       </div>
       <div className="text-md font-sans mb-4">
-        {article.description}
+        {article.description}.
       </div>
       <Link href={`/blog/${article.id}`} className="flex justify-end">
         <div className="flex items-center mb-6 font-bold text-indigo-400">
