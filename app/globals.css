@@ -16,33 +16,37 @@
 }
 
 .article {
-  @apply text-xl leading-snug mb-4;
+  @apply text-lg leading-snug mb-4 text-slate-800;
 }
 
 .article h1 {
-  @apply text-4xl font-bold leading-snug text-slate-200;
+  @apply text-4xl font-bold leading-snug text-slate-700;
 }
 
 .article h2 {
-  @apply text-xl leading-snug text-slate-200 mb-4;
-}
-
-.article ol {
-  @apply list-decimal list-inside mb-4;
-}
-
-.article li {
-  @apply mb-2;
-}
-
-.article code {
-  @apply text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6
-}
-
-.article section {
-  @apply mt-10;
+  @apply text-2xl font-bold leading-snug text-slate-900 mt-6 mb-4;
 }
 
 .article p {
   @apply mb-4;
+}
+
+.article ol {
+  @apply list-decimal list-outside mb-4 ml-5;
+}
+
+ol > li::marker {
+  font-weight: bold;
+}
+
+.article li {
+  @apply mb-1;
+}
+
+.article pre {
+  @apply ml-5 mr-5 mb-6;
+}
+
+.article code {
+  @apply text-sm sm:text-base inline-flex text-left items-center w-full space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 overflow-x-scroll;
 }

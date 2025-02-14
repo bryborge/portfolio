@@ -7,13 +7,13 @@ category: "Programming"
 
 ## Overview
 
-1. Define the function's *signature, purpose,* and *stub*
-2. Describe the desired behavior with examples
-3. Write the function's template and reflect on the results of steps **1** and **2**
-4. Code the function body
-5. Test, debug, and refactor
+1. Define the function's *signature, purpose,* and *stub*.
+2. Describe the desired behavior with examples.
+3. Write the function's template and reflect on the results of steps **1** and **2**.
+4. Code the function body.
+5. Test, debug, and refactor.
 
-## Example (in Ruby)
+## Example (in Ruby 💎)
 
 **Criteria:** Write a function that consumes a number and produces twice that number. Call your function **double**.
 
@@ -23,6 +23,7 @@ category: "Programming"
   # Purpose   - Doubles the number given
   # Stub      - `def double(n) 0; end`
   ```
+
 2. Describe the desired behavior with examples.
   ```ruby
   double(0)
@@ -34,6 +35,7 @@ category: "Programming"
   double(88)
   # => 176
   ```
+
 3. Write the function's template and reflect on the results of steps **1** and **2**.
   ```ruby
   def double(n)
@@ -41,6 +43,7 @@ category: "Programming"
     # 2. return that value
   end
   ```
+
 4. Code the function body.
   ```ruby
   def double(n)
@@ -48,6 +51,7 @@ category: "Programming"
     double_n
   end
   ```
+
 5. Test, debug, ...
   ```ruby
   require 'minitest/autorun'
@@ -75,4 +79,6 @@ category: "Programming"
   end
   ```
 
-Happy coding!
+That's it!
+
+Now that you're unstuck, get back to work ☕

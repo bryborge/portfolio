@@ -1,4 +1,3 @@
-import BlogIcon from "@/app/components/Icons/BlogIcon";
 import { getArticleData, getArticleMeta, getArticleSlugs } from "@/lib/articles";
 import Link from "next/link";
 
@@ -36,22 +35,26 @@ const Article = async (props: { params: Promise<{ slug: string }> }): Promise<JS
   return (
     <main className="mx-auto mb-auto min-h-screen max-w-screen-xl lg:gap-4 width-full px-12 py-12 md:py-20 lg:px-24 font-sans">
       <article className="article">
-        <div className="flex flex-col md:flex-row md:justify-between items-center mb-4">
-          <div>
-            <h1>{`${articleMeta?.title}`}</h1>
-            <h2>{`${articleMeta?.description}`}</h2>
-            <p className="mb-3 text-sm">{`${articleMeta?.date}`}</p>
-          </div>
-          <div>
-            <Link href="/blog">
-              <button className="rounded-full bg-indigo-400 px-4 py-2 text-indigo-950 text-sm">
-                Back to Blog
-              </button>
-            </Link>
+        <div className="mb-4">
+          <div className="bg-slate-200 p-4 rounded-lg shadow-lg flex flex-col md:flex-row justify-between items-center">
+            <div className="m-4">
+              <h1 className="text-center md:text-left">{`${articleMeta?.title}`}</h1>
+              <p className="text-center md:text-left text-slate-700">{`${articleMeta?.description}`}</p>
+              <p className="text-center md:text-left text-sm text-slate-700">{`${articleMeta?.date}`}</p>
+            </div>
+
+            <div className="m-4 mt-0 md:mt-5">
+              <Link href="/blog">
+                <button className="rounded-full bg-indigo-500 px-4 py-2 font-bold leading-5 text-indigo-50 text-sm hover:bg-indigo-700 outline outline-indigo-800 m-1">
+                  Back to Blog
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-        <hr />
-        <section dangerouslySetInnerHTML={{ __html: articleData.contentHtml }} />
+        <div className="bg-slate-200 p-8 rounded-lg shadow-lg">
+          <section dangerouslySetInnerHTML={{ __html: articleData.contentHtml }} />
+        </div>
       </article>
     </main>
   );
