@@ -2,11 +2,11 @@ import { Dispatch, SetStateAction, useState, useEffect, RefObject } from "react"
 import * as constants from '../app/terminal/constants';
 
 
-  /**
-   * A hook that prints out the initial lines of text in the terminal, one at a time.
-   *
-   * @param {Dispatch<SetStateAction<string[]>>} setOutput - The function to update the output state.
-   */
+/**
+ * A hook that prints out the initial lines of text in the terminal, one at a time.
+ *
+ * @param {Dispatch<SetStateAction<string[]>>} setOutput - The function to update the output state.
+ */
 export const useTypingIndex = (setOutput: Dispatch<SetStateAction<string[]>>) => {
   const [typingIndex, setTypingIndex] = useState(0);
   const TYPING_SPEED = 25;
